@@ -33,8 +33,8 @@ PEAK_SURGE_MULTIPLIER: Decimal = Decimal(2.0)
 RATE_PER_KM: Decimal = Decimal(1.0)  # Rate is assumed in USD
 TIME_FACTOR_MAP = {
     DayTime.MORNING: Decimal(1.0),
-    DayTime.EVENING: Decimal(1.2),
-    DayTime.NIGHT: Decimal(1.5),
+    DayTime.EVENING: Decimal(1.3),
+    DayTime.NIGHT: Decimal(1.0),
 }
 
 TRAFFIC_MULTIPLIER_MAP = {

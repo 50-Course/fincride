@@ -63,7 +63,7 @@ class FareEngine:
         """
 
         total_fare = self.base_fare
-        distance_fare = int(distance) * self.rate_per_km
+        distance_fare = Decimal(distance) * self.rate_per_km
 
         # only adust fare, if traffic is high
         traffic_multiplier = self.traffic_multiplier_map.get(
@@ -73,9 +73,9 @@ class FareEngine:
         # next we want to apply the surge pricing
         # if the demand is high
         demand_multiplier = (
-            self.surge_multiplier
-            if demand_level == DemandLevel.NORMAL
-            else self.peak_surge_multiplier
+            self.peak_surge_multiplier
+            if demand_level == DemandLevel.PEAK
+            else Decimal(1.0)
         )
 
         time_factor = self.time_factor_map.get(time_of_day, Decimal(1.0))

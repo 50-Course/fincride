@@ -89,7 +89,7 @@ class TestFareEngine(TestCase):
         self.assertEqual(fare_data["distance_fare"], Decimal(7) * RATE_PER_KM)
         self.assertEqual(fare_data["traffic_multiplier"], Decimal(1.5))
         self.assertEqual(fare_data["demand_multiplier"], PEAK_SURGE_MULTIPLIER)
-        self.assertEqual(fare_data["time_multiplier"], Decimal(1.3))
+        self.assertEqual(fare_data["time_factor"], Decimal(1.3))
         # self.assertEqual(fare_data["total_fare"], expected_fare)
 
     def test_long_distance_ride(self):
