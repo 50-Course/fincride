@@ -1,12 +1,10 @@
 from decimal import Decimal
+
 from django.test import TestCase
+
+from fincride.api.pricing.constants import (BASE_FARE, BASE_SURGE_MULTIPLIER,
+                                            PEAK_SURGE_MULTIPLIER, RATE_PER_KM)
 from fincride.api.pricing.services import FareEngine
-from fincride.api.pricing.constants import (
-    BASE_FARE,
-    RATE_PER_KM,
-    BASE_SURGE_MULTIPLIER,
-    PEAK_SURGE_MULTIPLIER,
-)
 
 
 class TestFareEngine(TestCase):

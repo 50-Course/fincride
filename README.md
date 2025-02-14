@@ -1,13 +1,23 @@
 # Dynamic Pricing Engine for Riding Apps
 
-Dynamic Pricing Engine for Riding Apps is a pricing engine that calculates the price of a ride based on the distance and time taken to complete the ride. The pricing engine uses a base fare, cost per minute, and cost per mile to calculate the price of the ride. The pricing engine also takes into account surge pricing, which increases the price of the ride based on the demand for rides at a particular time.
-This is a simple pricing engine that can be used by riding apps to calculate the price of a ride for their customers. The pricing engine is written in Python and can be easily integrated into existing riding apps. The pricing engine is flexible and can be customized to suit the needs of different riding apps.
+Dynamic Pricing Engine for Riding Apps is a pricing engine that calculates the
+price of a ride based on the distance and time taken to complete the ride. The
+pricing engine uses a base fare, cost per minute, and cost per mile to calculate
+the price of the ride. The pricing engine also takes into account surge pricing,
+which increases the price of the ride based on the demand for rides at a
+particular time. This is a simple pricing engine that can be used by riding apps
+to calculate the price of a ride for their customers. The pricing engine is
+written in Python and can be easily integrated into existing riding apps. The
+pricing engine is flexible and can be customized to suit the needs of different
+riding apps.
 
 ## Features
 
-- Calculate the price of a ride based on the distance and time taken to complete the ride
+- Calculate the price of a ride based on the distance and time taken to complete
+  the ride
 - Use a base fare, cost per km to calculate the price of the ride
-- Take into account surge pricing to increase the price of the ride based on demand
+- Take into account surge pricing to increase the price of the ride based on
+  demand
 
 ## Installation
 
@@ -34,7 +44,9 @@ python manage.py test
 
 ## Contributing
 
-Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open-source community such an amazing place to
+learn, inspire, and create. Any contributions you make are **greatly
+appreciated**.
 
 ## License
 

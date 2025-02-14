@@ -7,7 +7,6 @@ repos:
       - id: check-yaml
       - id: check-added-large-files
       - id: check-json
-      - id: name-tests-test
       - id: pretty-format-json
         args: ['--autofix', '--indent', '2']
   - repo: https://github.com/psf/black
@@ -20,11 +19,6 @@ repos:
       - id: isort
   - repo: local
     hooks:
-      - id: pylint
-        name: pylint
-        entry: pylint
-        language: system
-        types: [python]
       - id: prettier
         name: Prettier
         language: node

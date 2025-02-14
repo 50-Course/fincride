@@ -1,6 +1,5 @@
 from drf_spectacular.utils import OpenApiExample
 
-
 fare_pricing_request_example = OpenApiExample(
     name="Fare Request Example",
     request_only=True,

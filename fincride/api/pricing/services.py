@@ -5,20 +5,14 @@ Author: Eri A.
 Created: 2025-02-13 22:32
 """
 
-from decimal import Decimal
 import enum
-from typing import List, Dict
+from decimal import Decimal
+from typing import Dict, List
 
-from api.pricing.constants import (
-    BASE_FARE,
-    BASE_SURGE_MULTIPLIER,
-    PEAK_SURGE_MULTIPLIER,
-    RATE_PER_KM,
-    TIME_FACTOR_MAP,
-    TRAFFIC_MULTIPLIER_MAP,
-    DemandLevel,
-)
-
+from api.pricing.constants import (BASE_FARE, BASE_SURGE_MULTIPLIER,
+                                   PEAK_SURGE_MULTIPLIER, RATE_PER_KM,
+                                   TIME_FACTOR_MAP, TRAFFIC_MULTIPLIER_MAP,
+                                   DemandLevel)
 
 # The algorithm
 #

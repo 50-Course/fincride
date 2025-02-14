@@ -1,12 +1,14 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-
-from api.pricing.serializers import FareRequestSerializer, FarePricingResponseSerializer
+from api.pricing.serializers import (FarePricingResponseSerializer,
+                                     FareRequestSerializer)
 from api.pricing.services import FareEngine
-from drf_spectacular.utils import OpenApiRequest, OpenApiResponse, extend_schema
+from drf_spectacular.utils import (OpenApiRequest, OpenApiResponse,
+                                   extend_schema)
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from .openapi import fare_pricing_request_example, fare_pricing_response_example
+from .openapi import (fare_pricing_request_example,
+                      fare_pricing_response_example)
 
 
 class FarePricingView(APIView):

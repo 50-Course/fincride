@@ -4,7 +4,6 @@ Django settings for fincride project.
 
 import os
 import sys
-
 from pathlib import Path
 
 PROJECT_NAME = "Linc by Fincride"

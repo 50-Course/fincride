@@ -1,6 +1,6 @@
-from rest_framework.test import APITestCase
 from decmial import Decimal
 from rest_framework import status
+from rest_framework.test import APITestCase
 
 
 class FarePricingAPIIntegrationTest(APITestCase):

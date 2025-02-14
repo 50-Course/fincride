@@ -1,5 +1,5 @@
-from decimal import Decimal
 import enum
+from decimal import Decimal
 
 # This module uses explict typing to define the constants
 # this ensures that changes to this module of invalid type is
