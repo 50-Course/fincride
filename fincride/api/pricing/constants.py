@@ -27,6 +27,7 @@ class DemandLevel(enum.StrEnum):
 
 BASE_FARE: Decimal = Decimal(2.5)  # Fare is assumed in USD
 
+NORMAL_SURGE_MULTIPLIER: Decimal = Decimal(1.0)
 BASE_SURGE_MULTIPLIER: Decimal = Decimal(1.2)
 PEAK_SURGE_MULTIPLIER: Decimal = Decimal(2.0)
 

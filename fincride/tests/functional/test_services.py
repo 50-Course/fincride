@@ -3,8 +3,12 @@ from decimal import Decimal
 from django.test import TestCase
 
 from fincride.api.pricing.constants import (BASE_FARE, BASE_SURGE_MULTIPLIER,
-                                            PEAK_SURGE_MULTIPLIER, RATE_PER_KM)
+                                            NORMAL_SURGE_MULTIPLIER,
+                                            PEAK_SURGE_MULTIPLIER, RATE_PER_KM,
+                                            TRAFFIC_MULTIPLIER_MAP,
+                                            TrafficLevel)
 from fincride.api.pricing.services import FareEngine
+from fincride.tests.utils import UtilsTestCase
 
 
 class TestFareEngine(TestCase):
@@ -25,7 +29,7 @@ class TestFareEngine(TestCase):
 
         self.assertEqual(fare_data["distance_fare"], Decimal(5) * RATE_PER_KM)
         self.assertEqual(fare_data["traffic_multiplier"], Decimal(1.0))
-        self.assertEqual(fare_data["demand_multiplier"], BASE_SURGE_MULTIPLIER)
+        self.assertEqual(fare_data["demand_multiplier"], NORMAL_SURGE_MULTIPLIER)
         self.assertEqual(fare_data["total_fare"], expected_fare)
 
     def test_high_traffic_ride_fare(self):
@@ -38,13 +42,13 @@ class TestFareEngine(TestCase):
             distance, traffic_level, demand_level, time_of_day
         )
 
-        expected_fare = (BASE_FARE + (Decimal(8) * RATE_PER_KM)) * Decimal(1.5)
+        expected_fare = (BASE_FARE + (distance * RATE_PER_KM)) * Decimal(1.5)
 
         self.assertEqual(fare_data["base_fare"], BASE_FARE)
-        self.assertEqual(fare_data["distance_fare"], Decimal(8) * RATE_PER_KM)
+        self.assertEqual(fare_data["distance_fare"], 8 * RATE_PER_KM)
         self.assertEqual(fare_data["traffic_multiplier"], Decimal(1.5))
-        self.assertEqual(fare_data["demand_multiplier"], BASE_SURGE_MULTIPLIER)
-        # self.assertEqual(fare_data["total_fare"], expected_fare)
+        self.assertEqual(fare_data["demand_multiplier"], NORMAL_SURGE_MULTIPLIER)
+        self.assertEqual(fare_data["total_fare"], expected_fare)
 
     def test_surge_pricing_high_demand(self):
         distance = 12
@@ -57,14 +61,19 @@ class TestFareEngine(TestCase):
         )
 
         expected_fare = (
-            BASE_FARE + (Decimal(12) * RATE_PER_KM)
-        ) * PEAK_SURGE_MULTIPLIER
+            (BASE_FARE + (distance * RATE_PER_KM))
+            * Decimal(1.2)
+            * PEAK_SURGE_MULTIPLIER
+        )
 
         self.assertEqual(fare_data["base_fare"], BASE_FARE)
-        self.assertEqual(fare_data["distance_fare"], Decimal(12) * RATE_PER_KM)
-        self.assertEqual(fare_data["traffic_multiplier"], Decimal(1.0))
+        self.assertEqual(fare_data["distance_fare"], 12 * RATE_PER_KM)
+        self.assertEqual(
+            fare_data["traffic_multiplier"],
+            Decimal(1.2),
+        )
         self.assertEqual(fare_data["demand_multiplier"], PEAK_SURGE_MULTIPLIER)
-        # self.assertEqual(fare_data["total_fare"], expected_fare)
+        self.assertEqual(fare_data["total_fare"], expected_fare)
 
     def test_peak_hour_with_high_traffic(self):
         distance = 7
@@ -77,18 +86,18 @@ class TestFareEngine(TestCase):
         )
 
         expected_fare = (
-            (BASE_FARE + (Decimal(7) * RATE_PER_KM))
+            (BASE_FARE + (7 * RATE_PER_KM))
             * Decimal(1.5)
             * PEAK_SURGE_MULTIPLIER
             * Decimal(1.3)
         )
 
         self.assertEqual(fare_data["base_fare"], BASE_FARE)
-        self.assertEqual(fare_data["distance_fare"], Decimal(7) * RATE_PER_KM)
+        self.assertEqual(fare_data["distance_fare"], 7 * RATE_PER_KM)
         self.assertEqual(fare_data["traffic_multiplier"], Decimal(1.5))
         self.assertEqual(fare_data["demand_multiplier"], PEAK_SURGE_MULTIPLIER)
         self.assertEqual(fare_data["time_factor"], Decimal(1.3))
-        # self.assertEqual(fare_data["total_fare"], expected_fare)
+        self.assertEqual(fare_data["total_fare"], expected_fare)
 
     def test_long_distance_ride(self):
         distance = 20
@@ -100,10 +109,10 @@ class TestFareEngine(TestCase):
             distance, traffic_level, demand_level, time_of_day
         )
 
-        expected_fare = BASE_FARE + (Decimal(20) * RATE_PER_KM)
+        expected_fare = BASE_FARE + (20 * RATE_PER_KM)
 
         self.assertEqual(fare_data["base_fare"], BASE_FARE)
-        self.assertEqual(fare_data["distance_fare"], Decimal(20) * RATE_PER_KM)
+        self.assertEqual(fare_data["distance_fare"], 20 * RATE_PER_KM)
         self.assertEqual(fare_data["traffic_multiplier"], Decimal(1.0))
-        self.assertEqual(fare_data["demand_multiplier"], BASE_SURGE_MULTIPLIER)
-        # self.assertEqual(fare_data["total_fare"], expected_fare)
+        self.assertEqual(fare_data["demand_multiplier"], NORMAL_SURGE_MULTIPLIER)
+        self.assertEqual(fare_data["total_fare"], expected_fare)

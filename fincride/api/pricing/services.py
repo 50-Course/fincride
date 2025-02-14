@@ -10,6 +10,7 @@ from decimal import Decimal
 from typing import Dict, List
 
 from api.pricing.constants import (BASE_FARE, BASE_SURGE_MULTIPLIER,
+                                   NORMAL_SURGE_MULTIPLIER,
                                    PEAK_SURGE_MULTIPLIER, RATE_PER_KM,
                                    TIME_FACTOR_MAP, TRAFFIC_MULTIPLIER_MAP,
                                    DemandLevel)
@@ -57,7 +58,7 @@ class FareEngine:
         """
 
         total_fare = self.base_fare
-        distance_fare = Decimal(distance) * self.rate_per_km
+        distance_fare = distance * self.rate_per_km
 
         # only adust fare, if traffic is high
         traffic_multiplier = self.traffic_multiplier_map.get(
@@ -69,7 +70,7 @@ class FareEngine:
         demand_multiplier = (
             self.peak_surge_multiplier
             if demand_level == DemandLevel.PEAK
-            else Decimal(1.0)
+            else NORMAL_SURGE_MULTIPLIER
         )
 
         time_factor = self.time_factor_map.get(time_of_day, Decimal(1.0))
