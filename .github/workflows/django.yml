@@ -8,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -29,4 +28,4 @@ jobs:
     - name: Run Tests
       run: |
         cd fincride/
-        python manage.py test fincride/tests/
+        poetry run python manage.py test
