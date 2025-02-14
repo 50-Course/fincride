@@ -28,5 +28,4 @@ jobs:
         poetry install --no-root
     - name: Run Tests
       run: |
-        cd fincride/
-        python manage.py test
+        python manage.py test fincride/tests/
