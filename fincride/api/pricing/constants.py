@@ -27,18 +27,18 @@ class DemandLevel(enum.StrEnum):
 
 BASE_FARE: Decimal = Decimal(2.5)  # Fare is assumed in USD
 
-BASE_SURGE_MULTIPLIER: float = 1.2
-PEAK_SURGE_MULTIPLIER: float = 2.0
+BASE_SURGE_MULTIPLIER: Decimal = Decimal(1.2)
+PEAK_SURGE_MULTIPLIER: Decimal = Decimal(2.0)
 
 RATE_PER_KM: Decimal = Decimal(1.0)  # Rate is assumed in USD
 TIME_FACTOR_MAP = {
-    DayTime.MORNING: 1.0,
-    DayTime.EVENING: 1.2,
-    DayTime.NIGHT: 1.5,
+    DayTime.MORNING: Decimal(1.0),
+    DayTime.EVENING: Decimal(1.2),
+    DayTime.NIGHT: Decimal(1.5),
 }
 
 TRAFFIC_MULTIPLIER_MAP = {
-    TrafficLevel.LOW: 1.0,
-    TrafficLevel.NORMAL: 1.2,
-    TrafficLevel.HIGH: 1.5,
+    TrafficLevel.LOW: Decimal(1.0),
+    TrafficLevel.NORMAL: Decimal(1.2),
+    TrafficLevel.HIGH: Decimal(1.5),
 }

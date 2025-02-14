@@ -9,7 +9,7 @@ from decimal import Decimal
 import enum
 from typing import List, Dict
 
-from fincride.api.pricing.constants import (
+from api.pricing.constants import (
     BASE_FARE,
     BASE_SURGE_MULTIPLIER,
     PEAK_SURGE_MULTIPLIER,
@@ -38,15 +38,15 @@ class FareEngine:
     def __init__(
         self,
         base_fare: Decimal = BASE_FARE,
-        surge_multiplier: float = BASE_SURGE_MULTIPLIER,
-        peak_surge_multiplier: float = PEAK_SURGE_MULTIPLIER,
+        surge_multiplier: Decimal = BASE_SURGE_MULTIPLIER,
+        peak_surge_multiplier: Decimal = PEAK_SURGE_MULTIPLIER,
         rate_per_km: Decimal = RATE_PER_KM,
         time_factor_map: dict = TIME_FACTOR_MAP,
         traffic_multiplier_map: dict = TRAFFIC_MULTIPLIER_MAP,
     ):
         self.base_fare = base_fare
-        self.surge_multiplier = Decimal(surge_multiplier)
-        self.peak_surge_multiplier = Decimal(peak_surge_multiplier)
+        self.surge_multiplier = surge_multiplier
+        self.peak_surge_multiplier = peak_surge_multiplier
         self.rate_per_km = rate_per_km
         self.time_factor_map = time_factor_map
         self.traffic_multiplier_map = traffic_multiplier_map
@@ -63,7 +63,7 @@ class FareEngine:
         """
 
         total_fare = self.base_fare
-        distance_fare = distance * self.rate_per_km
+        distance_fare = int(distance) * self.rate_per_km
 
         # only adust fare, if traffic is high
         traffic_multiplier = self.traffic_multiplier_map.get(

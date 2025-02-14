@@ -9,7 +9,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("PLATFORM_SECRET_KEY", default="")
+SECRET_KEY = os.getenv("PLATFORM_SECRET_KEY", default="your_secret_key")
 
 DEBUG = True
 
