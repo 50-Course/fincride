@@ -1,0 +1,18 @@
+{
+    "semi": false,
+    "printWidth": 80,
+    "overrides": [
+        {
+            "files": "*.json",
+            "options": {
+                "proseWrap": "always"
+            }
+        },
+        {
+            "files": "*.md",
+            "options": {
+                "proseWrap": "always"
+            },
+        }
+    ]
+}
