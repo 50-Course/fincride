@@ -3,6 +3,7 @@ Django settings for fincride project.
 """
 
 import os
+import sys
 
 from pathlib import Path
 
@@ -59,6 +60,14 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+if "test" in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": ":memory:",
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
