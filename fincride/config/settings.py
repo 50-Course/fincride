@@ -13,7 +13,13 @@ SECRET_KEY = os.getenv("PLATFORM_SECRET_KEY", default="your_secret_key")
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["fincride.onrender.com", "localhost"]
+ALLOWED_HOSTS = [
+    "*.onrender.com",
+]
+CORS_ALLOWED_ORIGINS = [
+    "https://fincride.onrender.com",
+    "http://localhost:8080",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -23,11 +29,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "drf_spectacular",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
