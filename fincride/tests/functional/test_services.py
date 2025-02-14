@@ -8,7 +8,6 @@ from fincride.api.pricing.constants import (BASE_FARE, BASE_SURGE_MULTIPLIER,
                                             TRAFFIC_MULTIPLIER_MAP,
                                             TrafficLevel)
 from fincride.api.pricing.services import FareEngine
-from fincride.tests.utils import UtilsTestCase
 
 
 class TestFareEngine(TestCase):
