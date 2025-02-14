@@ -1,21 +1,24 @@
 # Dynamic Pricing Engine for Riding Apps
 
 Documentation:
-[https://fincride.onrender.com/docs/](https://fincride.onrender.com/docs/) API
+[https://fincride.onrender.com/docs/](https://fincride.onrender.com/docs/)
 
-Reference Documentation:
+API Reference Documentation:
 [https://fincride.onrender.com/api/docs/](https://fincride.onrender.com/api/docs/)
 
 Dynamic Pricing Engine for Riding Apps is a pricing engine that calculates the
 price of a ride based on the distance and time taken to complete the ride. The
-pricing engine uses a base fare, cost per minute, and cost per mile to calculate
-the price of the ride. The pricing engine also takes into account surge pricing,
-which increases the price of the ride based on the demand for rides at a
-particular time. This is a simple pricing engine that can be used by riding apps
-to calculate the price of a ride for their customers. The pricing engine is
-written in Python and can be easily integrated into existing riding apps. The
-pricing engine is flexible and can be customized to suit the needs of different
-riding apps.
+pricing engine uses a base fare, and cost per km to calculate the price of the
+ride.
+
+The pricing engine also takes into account surge pricing, which increases the
+price of the ride based on the demand for rides at a particular time. This is a
+simple pricing engine that can be used by riding apps to calculate the price of
+a ride for their customers.
+
+`Linc` pricing engine is written in Python and can be easily integrated into
+existing riding apps. The pricing engine is flexible and can be customized to
+suit the needs of different riding apps.
 
 ## Features
 
