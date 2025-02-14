@@ -4,6 +4,9 @@ from rest_framework import status
 
 from api.pricing.serializers import FareRequestSerializer, FarePricingResponseSerializer
 from api.pricing.services import FareEngine
+from drf_spectacular.utils import OpenApiRequest, OpenApiResponse, extend_schema
+
+from .openapi import fare_pricing_request_example, fare_pricing_response_example
 
 
 class FarePricingView(APIView):
@@ -11,6 +14,25 @@ class FarePricingView(APIView):
     Calculate the fare pricing for a given ride
     """
 
+    @extend_schema(
+        tags=["Pricing"],
+        summary="Get Fare Pricing",
+        description="Request the fare price for a ride based on the distance, traffic level, demand level and time of day.",
+        request=OpenApiRequest(
+            FareRequestSerializer, examples=[fare_pricing_request_example]
+        ),
+        responses={
+            200: OpenApiResponse(
+                FarePricingResponseSerializer,
+                "Price retrieve successfully",
+                examples=[fare_pricing_response_example],
+            ),
+            400: OpenApiResponse(description="Bad Request"),
+            500: OpenApiResponse(
+                description="Internal Server Error e.g server is down or database error"
+            ),
+        },
+    )
     def get(self, request):
         serializer = FareRequestSerializer(data=request.query_params)
         if serializer.is_valid():
