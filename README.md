@@ -1,5 +1,10 @@
 # Dynamic Pricing Engine for Riding Apps
 
+Documentation:
+[https://fincride.onrender.com/docs/](https://fincride.onrender.com/docs/) API
+Reference Documentation:
+[https://fincride.onrender.com/api/docs/](https://fincride.onrender.com/api/docs/)
+
 Dynamic Pricing Engine for Riding Apps is a pricing engine that calculates the
 price of a ride based on the distance and time taken to complete the ride. The
 pricing engine uses a base fare, cost per minute, and cost per mile to calculate
