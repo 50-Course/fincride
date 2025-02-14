@@ -2,4 +2,4 @@
 .env
 .mypy_cache/
 .build_cache/
-.pycache/
+__pycache__/
