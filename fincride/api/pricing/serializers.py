@@ -1,14 +1,29 @@
+from django.db import models
 from rest_framework import serializers
 
 
 class FareRequestSerializer(serializers.Serializer):
-    distance = serializers.FloatField(help_text="Estimated distance in KM")
-    traffic_level = serializers.ChoiceField(choices=["low", "normal", "high"])
+    class TrafficLevelChoices(models.TextChoices):
+        LOW = "low", "Low"
+        NORMAL = "normal", "Normal"
+        HIGH = "high", "High"
+
+    class DemandLevelChoices(models.TextChoices):
+        NORMAL = "normal", "Normal"
+        PEAK = "peak", "Peak"
+
+    class TimeOfDayChoices(models.TextChoices):
+        MORNING = "morning", "Morning"
+        EVENING = "evening", "Evening"
+        NIGHT = "night", "Night"
+
+    distance = serializers.IntegerField(help_text="Estimated distance in KM")
+    traffic_level = serializers.ChoiceField(choices=TrafficLevelChoices.choices)
     demand_level = serializers.ChoiceField(
-        choices=["normal", "peak"],
+        choices=DemandLevelChoices.choices,
     )
     time_of_day = serializers.ChoiceField(
-        choices=["morning", "evening", "night"],
+        choices=TimeOfDayChoices.choices,
         required=False,
     )
 

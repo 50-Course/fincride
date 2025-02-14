@@ -1,8 +1,8 @@
 from api.pricing.serializers import (FarePricingResponseSerializer,
                                      FareRequestSerializer)
 from api.pricing.services import FareEngine
-from drf_spectacular.utils import (OpenApiRequest, OpenApiResponse,
-                                   extend_schema)
+from drf_spectacular.utils import (OpenApiParameter, OpenApiRequest,
+                                   OpenApiResponse, extend_schema)
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -20,6 +20,29 @@ class FarePricingView(APIView):
         tags=["Pricing"],
         summary="Get Fare Pricing",
         description="Request the fare price for a ride based on the distance, traffic level, demand level and time of day.",
+        parameters=[
+            OpenApiParameter(
+                name="distance",
+                description='Destination in km e.g "5"',
+                type=int,
+            ),
+            OpenApiParameter(
+                name="traffic_level",
+                type=str,
+                description='Traffic level e.g "low", "normal", "high"',
+            ),
+            OpenApiParameter(
+                name="demand_level",
+                type=str,
+                description="Demand level i.e rush hour - 'normal', 'peak' ",
+            ),
+            OpenApiParameter(
+                name="time_of_day",
+                type=str,
+                required=False,
+                description='Time of day e.g "morning", "evening", "night"',
+            ),
+        ],
         request=OpenApiRequest(
             FareRequestSerializer, examples=[fare_pricing_request_example]
         ),
