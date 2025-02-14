@@ -14,12 +14,17 @@ SECRET_KEY = os.getenv("PLATFORM_SECRET_KEY", default="your_secret_key")
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "fincride.onrender.com",
     "*.onrender.com",
+    "localhost",
+    "127.0.0.1",
 ]
 CORS_ALLOWED_ORIGINS = [
     "https://fincride.onrender.com",
     "http://localhost:8080",
 ]
+
+USE_X_FORWARDED_HOST = True
 
 INSTALLED_APPS = [
     "django.contrib.admin",
