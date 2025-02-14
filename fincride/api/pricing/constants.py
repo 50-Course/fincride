@@ -31,13 +31,13 @@ BASE_SURGE_MULTIPLIER: float = 1.2
 PEAK_SURGE_MULTIPLIER: float = 2.0
 
 RATE_PER_KM: Decimal = Decimal(1.0)  # Rate is assumed in USD
-TIME_FACTOR = {
+TIME_FACTOR_MAP = {
     DayTime.MORNING: 1.0,
     DayTime.EVENING: 1.2,
     DayTime.NIGHT: 1.5,
 }
 
-TRAFFIC_MULTIPLIER = {
+TRAFFIC_MULTIPLIER_MAP = {
     TrafficLevel.LOW: 1.0,
     TrafficLevel.NORMAL: 1.2,
     TrafficLevel.HIGH: 1.5,

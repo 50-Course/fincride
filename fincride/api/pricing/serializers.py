@@ -16,7 +16,7 @@ class FareRequestSerializer(serializers.Serializer):
 class FarePricingResponseSerializer(serializers.Serializer):
     base_fare = serializers.DecimalField(max_digits=10, decimal_places=2)
     distance_fare = serializers.DecimalField(max_digits=10, decimal_places=2)
-    traffic_multiplier = serializers.FloatField()
-    demand_multiplier = serializers.FloatField()
-    time_factor = serializers.FloatField()
+    traffic_multiplier = serializers.DecimalField(max_digits=10, decimal_places=2)
+    demand_multiplier = serializers.DecimalField(max_digits=10, decimal_places=2)
+    time_factor = serializers.DecimalField(max_digits=10, decimal_places=2)
     total_fare = serializers.DecimalField(max_digits=10, decimal_places=2)
