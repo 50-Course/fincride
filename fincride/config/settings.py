@@ -7,6 +7,7 @@ import sys
 
 from pathlib import Path
 
+PROJECT_NAME = "Linc by Fincride"
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("PLATFORM_SECRET_KEY", default="your_secret_key")
@@ -22,6 +23,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -96,3 +98,13 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": PROJECT_NAME,
+    "DESCRIPTION": "Moving you closer to your destination, one ride at a time. Anywhere, anytime.",
+    "VERSION": "1.0.0",
+}
