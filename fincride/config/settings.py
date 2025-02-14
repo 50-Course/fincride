@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv("PLATFORM_SECRET_KEY", default="your_secret_key")
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["fincride.onrender.com", "localhost"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
