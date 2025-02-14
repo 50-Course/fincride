@@ -45,10 +45,10 @@ class FareEngine:
         traffic_multiplier_map: dict = TRAFFIC_MULTIPLIER_MAP,
     ):
         self.base_fare = base_fare
-        self.surge_multiplier = surge_multiplier
-        self.peak_surge_multiplier = peak_surge_multiplier
+        self.surge_multiplier = Decimal(surge_multiplier)
+        self.peak_surge_multiplier = Decimal(peak_surge_multiplier)
         self.rate_per_km = rate_per_km
-        self.time_factor = time_factor
+        self.time_factor_map = time_factor_map
         self.traffic_multiplier_map = traffic_multiplier_map
 
     def calculate_fare(
@@ -61,4 +61,35 @@ class FareEngine:
         """
         Calculate the ride fare baseed on input parameters
         """
-        pass
+
+        total_fare = self.base_fare
+        distance_fare = distance * self.rate_per_km
+
+        # only adust fare, if traffic is high
+        traffic_multiplier = self.traffic_multiplier_map.get(
+            traffic_level, Decimal(1.0)
+        )
+
+        # next we want to apply the surge pricing
+        # if the demand is high
+        demand_multiplier = (
+            self.surge_multiplier
+            if demand_level == DemandLevel.NORMAL
+            else self.peak_surge_multiplier
+        )
+
+        time_factor = self.time_factor_map.get(time_of_day, Decimal(1.0))
+
+        total_fare += distance_fare
+        total_fare *= traffic_multiplier
+        total_fare *= demand_multiplier
+        total_fare *= time_factor
+
+        return {
+            "base_fare": self.base_fare,
+            "distance_fare": distance_fare,
+            "traffic_multiplier": traffic_multiplier,
+            "demand_multiplier": demand_multiplier,
+            "time_factor": time_factor,
+            "total_fare": total_fare,
+        }
